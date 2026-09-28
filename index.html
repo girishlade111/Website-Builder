@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Girish AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Monaco Editor -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="Gemini_Generated_Image_8lsgf58lsgf58lsg.png" alt="Girish AI Logo" class="logo-image">
+                    <span>Girish AI</span>
+                </div>
+                <div class="header-actions">
+                    <!-- Social Media Links -->
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/girish_lade_/" target="_blank" title="Instagram" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/girish-lade-075bba201/" target="_blank" title="LinkedIn" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/girishlade111" target="_blank" title="GitHub" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://codepen.io/Girish-Lade-the-looper" target="_blank" title="CodePen" class="social-link">
+                            <i class="fab fa-codepen"></i>
+                        </a>
+                        <a href="mailto:girishlade111@gmail.com" title="Email" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button class="btn btn-secondary" id="clearBtn">
+                            <i class="fas fa-trash"></i>
+                            Clear
+                        </button>
+                        <button class="btn btn-primary" id="exportBtn">
+                            <i class="fas fa-download"></i>
+                            Export
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Left Panel - Prompt Input -->
+            <div class="left-panel">
+                <div class="prompt-section">
+                    <h2>Describe your website</h2>
+                    <div class="prompt-input-container">
+                        <textarea id="promptInput"
+                            placeholder="Describe the website you want to create... For example: 'Create a modern portfolio website for a web developer with a hero section, about section, projects gallery, and contact form. Use a dark theme with blue accents.'"
+                            rows="6"></textarea>
+                        <div class="prompt-actions">
+                            <button class="enhance-btn" id="enhanceBtn">
+                                <i class="fas fa-magic"></i>
+                                Enhance Prompt
+                            </button>
+                            <button class="generate-btn" id="generateBtn">
+                                <i class="fas fa-wand-magic-sparkles"></i>
+                                Generate Website
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- History Section -->
+                    <div class="history-section">
+                        <div class="history-tabs">
+                            <button class="history-tab active" data-history="prompts">
+                                <i class="fas fa-history"></i>
+                                Prompt History
+                            </button>
+                            <button class="history-tab" data-history="code">
+                                <i class="fas fa-code-branch"></i>
+                                Code History
+                            </button>
+                        </div>
+
+                        <!-- Prompt History -->
+                        <div class="history-content active" id="promptHistory">
+                            <div class="history-list" id="promptHistoryList">
+                                <div class="history-empty">
+                                    <i class="fas fa-clock"></i>
+                                    <p>No prompts yet. Start by describing your website!</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Code History -->
+                        <div class="history-content" id="codeHistory">
+                            <div class="history-list" id="codeHistoryList">
+                                <div class="history-empty">
+                                    <i class="fas fa-code"></i>
+                                    <p>No generated code yet. Create your first website!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!-- Right Panel - Tabbed View -->
+            <div class="right-panel">
+                <div class="tab-header">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="code">
+                            <i class="fas fa-code"></i>
+                            Code
+                        </button>
+                        <button class="tab-btn" data-tab="preview">
+                            <i class="fas fa-eye"></i>
+                            Live Preview
+                        </button>
+                    </div>
+                    <div class="tab-actions">
+                        <button class="btn btn-small" id="copyCodeBtn2">
+                            <i class="fas fa-copy"></i>
+                            Copy
+                        </button>
+                        <button class="btn btn-small" id="refreshBtn">
+                            <i class="fas fa-refresh"></i>
+                            Refresh
+                        </button>
+                        <button class="btn btn-small" id="fullscreenBtn">
+                            <i class="fas fa-expand"></i>
+                            Fullscreen
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Code Tab Content -->
+                <div class="tab-content active" id="codeTab">
+                    <div class="monaco-editor-container" id="monacoEditorContainer">
+                        <!-- Monaco Editor will be initialized here -->
+                    </div>
+                </div>
+
+                <!-- Preview Tab Content -->
+                <div class="tab-content" id="previewTab">
+                    <div class="preview-container">
+                        <iframe id="previewFrame" src="about:blank"></iframe>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-content">
+                <div class="spinner"></div>
+                <p>Generating your website...</p>
+            </div>
+        </div>
+
+        <!-- Toast Notifications -->
+        <div class="toast-container" id="toastContainer"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
